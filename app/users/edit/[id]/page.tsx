@@ -1,43 +1,27 @@
 "use client"
-import React, { useState } from 'react';
+
+import React, { useState } from 'react'
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid'; // Import Grid from Material-UI
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-// import { useRouter } from 'next/router';
-import { usePathname, useSearchParams } from 'next/navigation'
 import Title from '@/app/components/Title';
-const Page = () => {
+const page = (params:any) => {
+    console.log(params.params.id);
+    
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [organization, setOrganization] = useState('');
+    const [isActive, setIsActive] = useState('');
     const [roles, setRoles] = useState('');
-  
-    // Function to handle adding user
-    const addUser = () => {
-        // Prepare user data object
-        const userData = {
-            id:4,
-            firstName,
-            lastName,
-            email,
-            phone,
-            organization,
-            roles
-        };
-        console.log(userData);
-        
-    };
-
-    return (
-        <div style={{ marginLeft: '170px', marginTop: '68px', padding: '20px' }}>
-            <Title>Add User</Title>
-            <Grid container spacing={2}>
-                <Grid item xs={6}>
+  return (
+    <div style={{ marginLeft: '170px', marginTop: '68px', padding: '20px' }}> {/* Adjust margin to match sidebar width and marginTop to match header height */}
+            <Title>Edit User</Title>
+            <Grid container spacing={2}> {/* Use Grid container to wrap the text fields */}
+                <Grid item xs={6}> {/* Specify the size of each text field */}
                     <TextField
                         autoFocus
                         margin="dense"
@@ -102,26 +86,15 @@ const Page = () => {
             </Grid>
             <DialogActions>
                 <Link href={'/users'}>
+
                     <Button >Cancel</Button>
                 </Link>
-                <Link href={{pathname:'/users',
-                    query:{
-                        id:5,
-                        firstName,
-                        lastName,
-                        email,
-                        phone,
-                        organization,
-                        roles
-                    }
-                }} >
-                <Button color="primary" onClick={addUser}>
-                    Save
+                <Button color="primary">
+                    Update
                 </Button>
-                </Link>
             </DialogActions>
         </div>
-    );
-};
+  )
+}
 
-export default Page;
+export default page
