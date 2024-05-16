@@ -34,8 +34,9 @@ export default function RootLayout({
         <CssBaseline />
         <Header  open={open} toggleDrawer={toggleDrawer}/>
         <Sidebar open={open} toggleDrawer={toggleDrawer} />
+        <div style={{ marginTop: '-15rem', marginLeft: open ? '15rem' : '0' }}>
         {children}
-
+        </div>
 
       </body>
 

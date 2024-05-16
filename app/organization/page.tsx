@@ -87,22 +87,13 @@ export default function Organization(params: any) {
 
   return (
     <>
-      <Box
-        component="main"
-        sx={{
-
-          flexGrow: 1,
-          height: '100vh',
-          overflow: 'auto', marginLeft: '10rem', marginTop: '4rem'
-        }}
-      >
-        <Container maxWidth="lg" sx={{ mt: 5, mb: 4 }}>
+      <div style={{marginLeft:'4rem'}}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <div>
-                    <Title>Organizations List</Title>
+                    <Title>Organizations</Title>
                   </div>
                   <div>
                     <Link href={'/organization/add'}>
@@ -136,8 +127,7 @@ export default function Organization(params: any) {
               </Paper>
             </Grid>
           </Grid>
-        </Container>
-      </Box>
+          </div>
 
     </>
   );

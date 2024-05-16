@@ -7,24 +7,23 @@ import Badge from '@mui/material/Badge';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-
+import { usePathname } from 'next/navigation'
 interface HeaderProps {
   open: boolean;
   toggleDrawer: () => void;
+ 
 }
-export default function Header({ open, toggleDrawer }: HeaderProps) {
-
-
-  const drawerWidth: number = 240;
+export default function Header({ open, toggleDrawer}: HeaderProps) {
+const drawerWidth: number = 240;
 
   interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
   }
 
   const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop: any) => prop !== 'open',
-  })<AppBarProps>(({ theme, open }: any) => ({
-    zIndex: theme.zIndex.drawer + 1,
+    shouldForwardProp: (prop) => prop !== 'open',
+  })<AppBarProps>(({ theme, open }) => ({
+    zIndex: theme.zIndex.drawer + 1,background:'white',color:'#3D3D3D',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -32,12 +31,16 @@ export default function Header({ open, toggleDrawer }: HeaderProps) {
     ...(open && {
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
+      background:'white',color:'#3D3D3D',
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
     }),
   }));
+  
+  const pathname = usePathname().split('/')[1].toUpperCase();
+  console.log('pathname',pathname)
   
   return (
 
@@ -68,7 +71,7 @@ export default function Header({ open, toggleDrawer }: HeaderProps) {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Dashboard
+            {pathname}
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
